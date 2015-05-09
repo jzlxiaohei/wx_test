@@ -1,0 +1,24 @@
+image: go1.4
+
+services:
+  - mongodb
+  - mysql
+
+env:
+ - MYSQL_INSTANCE_NAME=test
+# using default docker-link env
+#  - MONGODB_PORT_27017_TCP_ADDR=mongodb
+#  - MONGODB_PORT_27017_TCP_PORT=27017
+
+script:
+  - export GOPATH=$PWD
+  - export PATH=$PATH:$GOPATH/bin
+  - sudo apt-get update
+  - sudo apt-get -y install bzr
+
+notify:
+  email:
+    recipients:
+      - jzlxiaohei@163.com
+    on_success: on
+    on_failure: off
